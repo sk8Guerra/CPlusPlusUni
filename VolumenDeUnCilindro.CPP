@@ -6,7 +6,7 @@ const float pi = 3.1416;
 
 void main() {
 	clrscr();
-	cout<<"Ingrese los siguientes datos (metros): ";
+	cout<<"Ingrese los siguientes datos (metros): \n";
 
 	cout<<"Radio: ";
 	cin>>radio;
