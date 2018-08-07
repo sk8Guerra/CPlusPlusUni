@@ -17,6 +17,7 @@ void main()
    string sino;
 
 	do {
+
 		clrscr();
 		cout<<"Menu principal\n";
 		cout<<"1. Calcular el numero de lineas telefonicas.\n";
