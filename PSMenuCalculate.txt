@@ -1,0 +1,50 @@
+ALGORITMO Menu de calculo		
+// Este algoritmo despliga in menu,
+// el cual permite al usuario realizar
+// varios calculos.
+MODULOS INCLUIDOS											
+				 ENTRADA-SALIDA
+				 MATEMATICA
+CONSTANTES // No hay 
+VARIABLES
+		 ENTERO: opcion_menu, 
+		 
+			numero_suscriptores, 
+			lineas_tel, 
+			
+			rango_inicio, 
+			rango_fin, 
+			numeros_asumar, 
+			diferencia_entre_numeros,
+			suma_rango
+			
+			
+			dado1, dado2, suma_dados
+		 BOOLEANO: repeticion_menu
+INICIO											
+	  MOSTRAR("Menu principal", + CDL)
+	  MOSTRAR("1. Calcular el numero de lineas telefonicas.", + CDL)	  
+	  MOSTRAR("2. Calcular las suma de un rando de numeros.", + CDL)	  
+	  MOSTRAR("3. Lanzar dados y sumar el resultado.", + CDL)	  
+	  MOSTRAR("4. Salir..", + CDL)	  
+	  LEER(opcion_menu)
+		
+		if 
+		
+	  MOSTRAR("Ingrese el numero de suscriptores: ", + CDL)	  
+	  LEER(numero_suscriptores)
+	  lineas_tel <- (numero_suscriptores(numero_suscriptores-1)/2)
+	  MOSTRAR("El numero de linas telefonicas es: ", + lineas_tel)	
+	  MOSTRAR("¿Desea repetir el menu? s/n", + CDL)	
+	  LEER(repeticion_menu)
+	  
+	  MOSTRAR("Ingrese el inicio del rango: ", + CDL)
+	  LEER(rango_inicio)
+	  MOSTRAR("Ingrese el fin del rango: ", + CDL)
+	  LEER(rango_fin)
+	  numeros_asumar <- ((rango_fin - rango_inicio) + 1)
+	  diferencia_entre_numeros <- numeros_asumar - rango_inicio
+	  suma_rango <- (numeros_asumar/2)(2*rango_inicio + (numeros_asumar-1)diferencia_entre_numeros)
+	  MOSTRAR("El resultado es: ", + suma_rango)	
+	  
+FIN ALGORITMO Menu de calculo
