@@ -77,6 +77,10 @@ void main()
             }
 	      }
 	     	break;
+         case 4:{
+         	exit(0);
+	      }
+	     	break;
    	   default:{
       		cerr<<"Invalid option...\n";
 	      }
