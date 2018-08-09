@@ -3,17 +3,13 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string>
-
 void main()
 {
 	const mu = 75, vari = 4;
-
 	int opcion_menu, numero_suscriptores, lineas_tel, rango_inicio,
    	rango_fin, numeros_asumar, diferencia_entre_numeros, suma_rango,
       dado1, dado2, suma_dados;
-
    bool repeticion_menu, decision;
-
    string sino;
 
 	do {
