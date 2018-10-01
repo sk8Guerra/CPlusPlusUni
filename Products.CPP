@@ -1,3 +1,4 @@
+#include <iostream.h>
 #include <conio.h>
 
 struct fecha
@@ -27,9 +28,9 @@ int main()
 void llena_resgistro()
 {
     struct producto prod[10];
-    for (int p = 0; p<10; p++)
+    for (int p = 0; p<1; p++)
    {
-     cout << " Producto # "<< (p+1)<<":"<<endl;
+     cout << " Producto # "<< (p+1)<< ":" <<endl;
      cout << "\tCodigo: " ;
      cin >> prod[p].cod_prd;
      cout << "\n\tDescripcion: ";
@@ -54,9 +55,9 @@ void llena_resgistro()
      cin >> prod[p].fecha_venc.anio;
    }
 
-   cout << "Reporte de productos ingresados.\n\n";
-   cout << "Codigo   Descripcion   Precio   Existencia   FabDia   FabMes   FabDia   VenDia   VenMes   VenAnio"
-   cout << prod[p].cod_prd
+   cout << "Reporte de productos ingresados.";
+   cout << "\n Codigo   Descripcion   Precio   Existencia   FabDia   FabMes   FabDia   VenDia   VenMes   VenAnio";
+   cout << "\n" << prod[0].cod_prd;
 
    // << prod[p].nom_prd << prod[p].precio_prd << prod[p].cant_exist
    // << prod[p].fecha_fab.dia << prod[p].fecha_fab.mes
