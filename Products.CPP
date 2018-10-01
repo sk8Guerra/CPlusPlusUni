@@ -33,7 +33,7 @@ void llena_resgistro()
      cout << "\tCodigo: " ;
      cin >> prod[p].cod_prd;
      cout << "\n\tDescripcion: ";
-     cin >> prod[p].nom_prod;
+     cin >> prod[p].nom_prd;
      cout << "\n\tPrecio: ";
      cin >> prod[p].precio_prd;
      cout << "\n\tCantidad en existencia: ";
@@ -56,4 +56,10 @@ void llena_resgistro()
 
    cout << "Reporte de productos ingresados.\n\n";
    cout << "Codigo   Descripcion   Precio   Existencia   FabDia   FabMes   FabDia   VenDia   VenMes   VenAnio"
+   cout << prod[p].cod_prd
+
+   // << prod[p].nom_prd << prod[p].precio_prd << prod[p].cant_exist
+   // << prod[p].fecha_fab.dia << prod[p].fecha_fab.mes
+   // << prod[p].fecha_fab.anio << prod[p].fecha_venc.dia
+   // << prod[p].fecha_venc.mes << prod[p].fecha_venc.anio
 }
