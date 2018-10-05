@@ -56,11 +56,26 @@ void llena_resgistro()
    }
 
    cout << "Reporte de productos ingresados.";
-   cout << "\n Codigo   Descripcion   Precio   Existencia   FabDia   FabMes   FabDia   VenDia   VenMes   VenAnio";
-   cout << "\n" << prod[0].cod_prd;
 
-   // << prod[p].nom_prd << prod[p].precio_prd << prod[p].cant_exist
-   // << prod[p].fecha_fab.dia << prod[p].fecha_fab.mes
-   // << prod[p].fecha_fab.anio << prod[p].fecha_venc.dia
-   // << prod[p].fecha_venc.mes << prod[p].fecha_venc.anio
+
+   cout << "\n Codigo   Descripcion   Precio   Existencia   FabDia   FabMes   FabDia   VenDia   VenMes   VenAnio";
+
+    for (int p = 0; p<1; p++)
+   {
+		cout << "\n" << prod[p].cod_prd << "   " << prod[p].nom_prd << "   "  << prod[p].precio_prd << "   " << prod[p].cant_exist << "   " << prod[p].fecha_fab.dia << "   " << prod[p].fecha_fab.dia
+           << "   " << prod[p].fecha_fab.mes << "   " << prod[p].fecha_fab.anio << "   " << prod[p].fecha_venc.dia << "   " << prod[p].fecha_venc.mes << "   " << prod[p].fecha_venc.anio;
+   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
