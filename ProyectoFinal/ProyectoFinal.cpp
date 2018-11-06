@@ -98,9 +98,9 @@ int main()
 			ofstream temp; 
 			temp.open("tempabcEmpleados.bin", ios::out| ios::app | ios::binary);
 				
-			cout << "Ingrese el codigo del empleado";
+			cout << "Ingrese el codigo del empleado: " << endl;
 			cin >> emp.codigotemp;
-			archivo>>emp.codigo;
+			archivo>> emp.codigo;
 		
 			while (!archivo.eof())
 			{
