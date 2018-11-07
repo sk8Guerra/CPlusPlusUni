@@ -1,13 +1,12 @@
 #include <iostream>
-#include <conio.h>
 #include <fstream>
+#include <string.h>
 
 using namespace std;
 
 struct Empleado {
 	char codigo[20];
 	char nombre[50];
-	char codigotemp[20];
 	int edad;
 	char puesto[50];
 	float sueldo;
@@ -20,8 +19,7 @@ void guardar(Empleado guardar) {
 	archivo.close();
 }
 
-void mostrarEmpleados()
-{
+void mostrarEmpleados() {
 	Empleado mostrar;
 	fstream archivo("abcEmpleados.bin", ios::in | ios::binary);
 	if (archivo.fail()) {
@@ -51,6 +49,7 @@ int main()
 {
 	int opcion = 0;
 	char espacio[2];
+	char * employeeCode;
 	Empleado emp;
 	do {
 		cout << "----------Menu----------" << endl;
@@ -70,7 +69,7 @@ int main()
 
 			cout << "\nCodigo: ";
 			cin.getline(emp.codigo, 20, '\n');
-			
+
 			cout << "Nombre: ";
 			cin.getline(emp.nombre, 50, '\n');
 
@@ -84,44 +83,36 @@ int main()
 			cin >> emp.sueldo, '\n';
 
 			guardar(emp);
-			system("pause");
 			break;
 		case 2:
 			cout << "\n -----Mostrando Datos Almacenados----- \n";
 			mostrarEmpleados();
-			system("pause");
 			break;
 		case 4:
+			Empleado employee;
 			ifstream archivo;
-			archivo.open("abcEmpleados.bin", ios::in | ios::app | ios::binary);
-				
-			ofstream temp; 
-			temp.open("tempabcEmpleados.bin", ios::out| ios::app | ios::binary);
-				
+			archivo.open("abcEmpleados.bin", ios::binary);
+
+			ofstream temp;
+			temp.open("tempabcEmpleados.bin", ios::out | ios::binary);
+
 			cout << "Ingrese el codigo del empleado: " << endl;
-			cin >> emp.codigotemp;
-			archivo>> emp.codigo;
-		
-			while (!archivo.eof())
+			cin >> employeeCode;
+
+			while (archivo.read((char*)&employee, sizeof(employee)))
 			{
-				archivo>>emp.nombre[50]>>emp.puesto[50]>>emp.edad>>emp.sueldo;
-				if(emp.codigotemp==emp.codigo)
-				{
-					cout<<"El registro del empleado se ha eliminado";
-					getch();
-				} else {
-					temp<<emp.codigo[20]<<" "<<emp.nombre[50]<<" "<<emp.puesto[50]<<" "<<emp.edad<<" "<<emp.sueldo;
-				}		
+				if (strcmp(employee.codigo, employeeCode)) {
+					temp.write((char *)&employee, sizeof(employee));
+				}
 			}
+
 			archivo.close();
 			temp.close();
-				
+
 			remove("abcEmpleados.bin");
 			rename("tempabcEmpleados.bin","abcEmpleados.bin");
 			break;
 		}
-		system("cls");
 	} while (opcion != 3);
 	return 0;
 }
-
