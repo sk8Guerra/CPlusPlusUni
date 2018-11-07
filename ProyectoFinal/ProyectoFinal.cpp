@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <conio.h>
 #include <string.h>
 
 using namespace std;
@@ -12,20 +13,22 @@ struct Empleado {
 	float sueldo;
 };
 
-void guardar(Empleado guardar) {
+void crear (Empleado guardar) {
 	fstream archivo;
 	archivo.open("abcEmpleados.bin", ios::out | ios::app | ios::binary);
 	archivo.write((char *)&guardar, sizeof(Empleado));
 	archivo.close();
+	cout << "\n";
 }
 
-void mostrarEmpleados() {
+void leer () {
 	Empleado mostrar;
 	fstream archivo("abcEmpleados.bin", ios::in | ios::binary);
 	if (archivo.fail()) {
 		cerr << "Error al abrir abcEmpleados.bin" << endl;
 	}
 	else {
+		system("cls");
 		while (!archivo.eof())
 		{
 			archivo.read((char*)&mostrar, sizeof(Empleado));
@@ -41,17 +44,50 @@ void mostrarEmpleados() {
 			}
 		}
 		cout << "\n";
+		getch();
+		
 	}
 	archivo.close();
+}
+
+void borrar (char code[]) {
+	Empleado mostrar;
+	ifstream archivo;
+	archivo.open("abcEmpleados.bin", ios::out | ios::app | ios::binary);
+	
+	if(archivo.fail())
+		cout << "Error al abrir el archivo abcEmpleados.bin" << endl;
+
+	ofstream temp;
+	temp.open("tempabcEmpleados.bin", ios::out | ios::app | ios::binary);
+	
+	if(archivo.fail()) 
+		cout << "Error al abrir el archivo tempabcEmpleados.bin" << endl;
+	
+	while (!archivo.eof())
+	{
+		archivo.read((char*)&mostrar, sizeof(Empleado));
+		if (strcmp(mostrar.codigo, code)) {
+			temp.write((char *)&mostrar, sizeof(Empleado));
+		}
+	}
+	cout << "\n";
+	
+	archivo.close();
+	temp.close();
+
+	remove("abcEmpleados.bin");
+	rename("tempabcEmpleados.bin","abcEmpleados.bin");
 }
 
 int main()
 {
 	int opcion = 0;
 	char espacio[2];
-	char * employeeCode;
+	char employeeCode[] = "";
 	Empleado emp;
 	do {
+		system("cls");
 		cout << "----------Menu----------" << endl;
 		cout << "1. Agregar empleado" << endl;
 		cout << "2. Mostrar empleados" << endl;
@@ -64,7 +100,6 @@ int main()
 		cin >> opcion;
 		switch (opcion) {
 		case 1:
-
 			cin.getline(espacio, 2);
 
 			cout << "\nCodigo: ";
@@ -82,37 +117,26 @@ int main()
 			cout << "Sueldo: ";
 			cin >> emp.sueldo, '\n';
 
-			guardar(emp);
+			crear(emp);
+			cout << "Creado exitosamente";
+			getch();
 			break;
 		case 2:
 			cout << "\n -----Mostrando Datos Almacenados----- \n";
-			mostrarEmpleados();
+			leer();
+			break;
+		case 3:
+			cout << "\n -----Editando----- \n";
+			getch();
 			break;
 		case 4:
-			Empleado employee;
-			ifstream archivo;
-			archivo.open("abcEmpleados.bin", ios::binary);
-
-			ofstream temp;
-			temp.open("tempabcEmpleados.bin", ios::out | ios::binary);
-
-			cout << "Ingrese el codigo del empleado: " << endl;
+			cout << "\nIngrese el codigo del empleado: " << endl;
 			cin >> employeeCode;
-
-			while (archivo.read((char*)&employee, sizeof(employee)))
-			{
-				if (strcmp(employee.codigo, employeeCode)) {
-					temp.write((char *)&employee, sizeof(employee));
-				}
-			}
-
-			archivo.close();
-			temp.close();
-
-			remove("abcEmpleados.bin");
-			rename("tempabcEmpleados.bin","abcEmpleados.bin");
+			borrar(employeeCode);
+			cout << "Borrado exitosamente";
+			getch();
 			break;
 		}
-	} while (opcion != 3);
+	} while (opcion != 0);
 	return 0;
 }
