@@ -13,12 +13,34 @@ struct Empleado {
 	float sueldo;
 };
 
-void crear (Empleado guardar) {
+void crear () {
+	
+	char espacio[2];
+	Empleado emp;
+
+	cin.getline(espacio, 2);
+
+	cout << "\nCodigo: ";
+	cin.getline(emp.codigo, 20, '\n');
+
+	cout << "Nombre: ";
+	cin.getline(emp.nombre, 50, '\n');
+
+	cout << "Puesto: ";
+	cin.getline(emp.puesto, 50, '\n');
+
+	cout << "Edad: ";
+	cin >> emp.edad, '\n';
+
+	cout << "Sueldo: ";
+	cin >> emp.sueldo, '\n';
+		
 	fstream archivo;
 	archivo.open("abcEmpleados.bin", ios::out | ios::app | ios::binary);
-	archivo.write((char *)&guardar, sizeof(Empleado));
+	archivo.write((char *)&emp, sizeof(Empleado));
 	archivo.close();
 	cout << "\n";
+	cout << "Creado exitosamente";
 }
 
 void leer () {
@@ -44,14 +66,18 @@ void leer () {
 			}
 		}
 		cout << "\n";
-		getch();
-		
 	}
 	archivo.close();
+	cout << "Mostrado exitosamente";
 }
 
-void borrar (char code[]) {
+void borrar () {
 	Empleado mostrar;
+	char employeeCode[] = "";
+	
+	cout << "\nIngrese el codigo del empleado: " << endl;
+	cin >> employeeCode;
+			
 	ifstream archivo;
 	archivo.open("abcEmpleados.bin", ios::out | ios::app | ios::binary);
 	
@@ -63,11 +89,13 @@ void borrar (char code[]) {
 	
 	if(archivo.fail()) 
 		cout << "Error al abrir el archivo tempabcEmpleados.bin" << endl;
+		
+	
 	
 	while (!archivo.eof())
 	{
 		archivo.read((char*)&mostrar, sizeof(Empleado));
-		if (strcmp(mostrar.codigo, code)) {
+		if (strcmp(mostrar.codigo, employeeCode) != 0) {
 			temp.write((char *)&mostrar, sizeof(Empleado));
 		}
 	}
@@ -78,6 +106,8 @@ void borrar (char code[]) {
 
 	remove("abcEmpleados.bin");
 	rename("tempabcEmpleados.bin","abcEmpleados.bin");
+	
+	cout << "Borrado exitosamente";
 }
 
 void reporte() {
@@ -105,15 +135,17 @@ void reporte() {
 			}
 		}
 		cout << "\n";
+		cout << "Resporte exitoso";
 	}
 	archivo.close();
 }
 
 void editar() {
 	Empleado emp;
-	char code[] = "";
 	char espacio[2];
-
+	
+	char code[] = "";
+	
 	cout << "\nIngrese el codigo del empleado a editar: " << endl;
 	cin >> code;
 
@@ -163,14 +195,14 @@ void editar() {
 
 	remove("abcEmpleados.bin");
 	rename("tempabcEmpleados.bin", "abcEmpleados.bin");
+	
+	cout << "Actualizado exitosamente";		
 }
 
 int main()
 {
 	int opcion = 0;
-	char espacio[2];
-	char employeeCode[] = "";
-	Empleado emp;
+	
 	do {
 		system("cls");
 		cout << "----------Menu----------" << endl;
@@ -187,30 +219,13 @@ int main()
 		switch (opcion) {
 		case 1:
 			cout << "\n -----Agregando----- \n";
-			cin.getline(espacio, 2);
-
-			cout << "\nCodigo: ";
-			cin.getline(emp.codigo, 20, '\n');
-
-			cout << "Nombre: ";
-			cin.getline(emp.nombre, 50, '\n');
-
-			cout << "Puesto: ";
-			cin.getline(emp.puesto, 50, '\n');
-
-			cout << "Edad: ";
-			cin >> emp.edad, '\n';
-
-			cout << "Sueldo: ";
-			cin >> emp.sueldo, '\n';
-
-			crear(emp);
-			cout << "Creado exitosamente";
+			crear();
 			getch();
 			break;
 		case 2:
 			cout << "\n -----Mostrando----- \n";
 			leer();
+			getch();
 			break;
 		case 3:
 			cout << "\n -----Editando----- \n";
@@ -219,10 +234,7 @@ int main()
 			break;
 		case 4:
 			cout << "\n -----Eliminando----- \n";
-			cout << "\nIngrese el codigo del empleado: " << endl;
-			cin >> employeeCode;
-			borrar(employeeCode);
-			cout << "Borrado exitosamente";
+			borrar();
 			getch();
 			break;
 		case 5:
