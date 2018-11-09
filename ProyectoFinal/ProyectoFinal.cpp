@@ -90,23 +90,25 @@ void borrar () {
 	if(archivo.fail()) 
 		cout << "Error al abrir el archivo tempabcEmpleados.bin" << endl;
 		
-	
-	
 	while (!archivo.eof())
 	{
 		archivo.read((char*)&mostrar, sizeof(Empleado));
-		if (strcmp(mostrar.codigo, employeeCode) != 0) {
-			temp.write((char *)&mostrar, sizeof(Empleado));
+		if(!archivo.eof()){
+			if (strcmp(mostrar.codigo, employeeCode) == 0) {
+				cout << "si\n";	
+			}else{
+				cout << "no\n";	
+				temp.write((char *)&mostrar, sizeof(Empleado));
+			}		
 		}
 	}
-	cout << "\n";
-	
 	archivo.close();
 	temp.close();
-
+	
 	remove("abcEmpleados.bin");
 	rename("tempabcEmpleados.bin","abcEmpleados.bin");
 	
+	cout << "\n";	
 	cout << "Borrado exitosamente";
 }
 
@@ -160,33 +162,37 @@ void editar() {
 
 	if (temp.fail()) 
 		cout << "Error al abrir el archivo tempabcEmpleados.bin" << endl;
-		
-	while (!archivo.eof()) {
+	
+	while (!archivo.eof())
+	{
 		archivo.read((char*)&emp, sizeof(Empleado));
-		if (strcmp(emp.codigo, code)) {
-			temp.write((char *)&emp, sizeof(Empleado));
-		} else {
-			cout << "\nCodigo: " << emp.codigo;
-			cout << "\nNombre: " << emp.nombre;
-			cout << "\nPuesto: " << emp.puesto;
-			cout << "\nEdad: " << emp.edad;
-			cout << "\nSueldo: " << emp.sueldo << endl;
-			
-			cin.getline(espacio, 2);
-			
-			cout << "Nuevo nombre: ";
-			cin.getline(emp.nombre, 50, '\n');
-
-			cout << "Nuevo puesto: ";
-			cin.getline(emp.puesto, 50, '\n');
-
-			cout << "Nuevo edad: ";
-			cin >> emp.edad, '\n';
-
-			cout << "Nuevo sueldo: ";
-			cin >> emp.sueldo, '\n';
-
-			temp.write( (char *) & emp, sizeof( Empleado ) );
+		if(!archivo.eof()){
+			if (strcmp(emp.codigo, code) == 0) {
+				cout << "\nCodigo: " << emp.codigo;
+				cout << "\nNombre: " << emp.nombre;
+				cout << "\nPuesto: " << emp.puesto;
+				cout << "\nEdad: " << emp.edad;
+				cout << "\nSueldo: " << emp.sueldo << endl;
+				
+				cin.getline(espacio, 2);
+				
+				cout << "Nuevo nombre: ";
+				cin.getline(emp.nombre, 50, '\n');
+	
+				cout << "Nuevo puesto: ";
+				cin.getline(emp.puesto, 50, '\n');
+	
+				cout << "Nuevo edad: ";
+				cin >> emp.edad, '\n';
+	
+				cout << "Nuevo sueldo: ";
+				cin >> emp.sueldo, '\n';
+	
+				temp.write( (char *) & emp, sizeof( Empleado ) );
+			}else{
+				cout << "no\n";	
+				temp.write( (char *) & emp, sizeof( Empleado ) );
+			}		
 		}
 	}
 	
