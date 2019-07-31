@@ -9,13 +9,19 @@ package interfaceabstract;
  *
  * @author cocoguerra
  */
-public class InterfaceAbstract {
+public class InterfaceAbstract extends Ejecutivo {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        InterfaceAbstract interfaceAbstract = new InterfaceAbstract();
+        interfaceAbstract.salario();
+        interfaceAbstract.nombre();
+        interfaceAbstract.genero();
+        interfaceAbstract.estadoCivil();
+        interfaceAbstract.fechaNacimiento();
+        interfaceAbstract.Profesion();
     }
     
 }

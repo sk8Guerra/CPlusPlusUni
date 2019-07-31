@@ -13,27 +13,27 @@ public class Ejecutivo extends Empleado {
 
     @Override
     public void salario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Printing Salario");
     }
 
     @Override
     public void nombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Printing Nombre");
     }
 
     @Override
     public void genero() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Printing GENERO");
     }
 
     @Override
     public void estadoCivil() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Printing Estado Civil");
     }
 
     @Override
     public void fechaNacimiento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Printing Fecha Nacimiento");
     }
     
     public void Profesion() {
